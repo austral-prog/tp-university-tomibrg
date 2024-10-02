@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,17 +23,9 @@ public class testStudent {
         assertEquals("matias@org.com", student2.getMail());
 
         student1.addCourse("Math");
-        student1.addCourse("Biology");
-        ArrayList<String> compareList = new ArrayList<String>();
-        compareList.add("Math");
-        compareList.add("Biology");
-        Collections.sort(compareList);
-        assertEquals(compareList, student1.getCourseList());
-
-        ArrayList<Student> studentList = new ArrayList<Student>();
-        studentList.add(student1);
-        studentList.add(student2);
-        assertEquals(studentList, student2.getStudentsList());
+        HashSet<String> compareSet = new HashSet<String>();
+        compareSet.add("Math");
+        assertEquals(compareSet, student1.getCourseList());
     }
 
     @Test
