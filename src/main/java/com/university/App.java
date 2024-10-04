@@ -1,6 +1,6 @@
 package com.university;
 
-import com.university.person.Student;
+import com.university.student.Student;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

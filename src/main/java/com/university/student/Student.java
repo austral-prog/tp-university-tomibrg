@@ -1,12 +1,13 @@
-package com.university.person;
+package com.university.student;
 
+
+import com.university.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 
-public class Student extends Person{
+public class Student extends Person {
     private HashSet<String> courseList = new HashSet<String>();
     private static ArrayList<Student> studentsList= new ArrayList<Student>();
 

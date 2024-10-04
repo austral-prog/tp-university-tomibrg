@@ -1,6 +1,6 @@
 package com.university.testPerson;
 
-import com.university.person.Person;
+import com.university.Person;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

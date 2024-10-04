@@ -1,6 +1,6 @@
 package com.university.subject;
 
-import com.university.person.Student;
+import com.university.student.Student;
 
 import java.util.ArrayList;
 

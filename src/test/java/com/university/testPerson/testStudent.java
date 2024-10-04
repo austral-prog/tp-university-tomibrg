@@ -1,11 +1,9 @@
 package com.university.testPerson;
 
-import com.university.person.Person;
-import com.university.person.Student;
+import com.university.student.Student;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
