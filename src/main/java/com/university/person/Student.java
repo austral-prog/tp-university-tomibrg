@@ -1,7 +1,5 @@
-package com.university.student;
+package com.university.person;
 
-
-import com.university.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -50,5 +48,16 @@ public class Student extends Person {
             }
         }
         return sortedStudents;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        boolean returnStatement = false;
+        Student student = (Student) other;
+
+        if (this.getName().equals(((Student) other).getName())) {
+            returnStatement = true;
+        }
+        return returnStatement;
     }
 }

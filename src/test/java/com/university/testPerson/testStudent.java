@@ -1,6 +1,9 @@
 package com.university.testPerson;
 
-import com.university.student.Student;
+import com.university.person.Person;
+import com.university.person.Student;
+import com.university.person.Teacher;
+import com.university.university.University;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -37,4 +40,6 @@ public class testStudent {
         expectedList.add("c");
         assertEquals(expectedList, student3.getSortedStudents());
     }
+
+
 }
