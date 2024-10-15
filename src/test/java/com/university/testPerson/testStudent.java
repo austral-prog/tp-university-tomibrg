@@ -15,13 +15,11 @@ public class testStudent {
 
     @Test
     public void testStudent(){
-        Student student1 = new Student("Tomas", "tomas@org.com");
+        Student student1 = new Student("Tomas");
         assertEquals("Tomas", student1.getName());
-        assertEquals("tomas@org.com", student1.getMail());
 
-        Student student2 = new Student("Matias", "matias@org.com");
+        Student student2 = new Student("Matias");
         assertEquals("Matias", student2.getName());
-        assertEquals("matias@org.com", student2.getMail());
 
         student1.addCourse("Math");
         HashSet<String> compareSet = new HashSet<String>();
@@ -31,9 +29,9 @@ public class testStudent {
 
     @Test
     public void testSortedStudents(){
-        Student student1 = new Student("b", "kjasbdk");
-        Student student2 = new Student("c", "kjadnka");
-        Student student3 = new Student("a", "akjndf");
+        Student student1 = new Student("b");
+        Student student2 = new Student("c");
+        Student student3 = new Student("a");
         ArrayList<String> expectedList = new ArrayList<String>();
         expectedList.add("a");
         expectedList.add("b");

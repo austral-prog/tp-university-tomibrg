@@ -19,6 +19,8 @@ public class University {
         this.name = name;
     }
 
+
+
     public String getName(){
         return name;
     }
@@ -46,7 +48,7 @@ public class University {
         privateMakeTeacherHashMap(dataList);
     }
 
-    private void privateMakeClassroomList(ArrayList<String[]> dataList){
+    public void privateMakeClassroomList(ArrayList<String[]> dataList){
         for (String[] studentData : dataList){
             if (!classRoomList.contains(studentData[0])){
                 classRoomList.add(studentData[0]);
@@ -54,11 +56,11 @@ public class University {
         }
     }
 
-    private void privateMakeStudentHashMap(ArrayList<String[]> dataList){
+    public void privateMakeStudentHashMap(ArrayList<String[]> dataList){
 
         for (String[] studentData : dataList){
             if (!studentMap.containsKey(studentData[2])){
-                studentMap.put(studentData[2], new Student(studentData[2], studentData[3]));
+                studentMap.put(studentData[2], new Student(studentData[2]));
                 studentMap.get(studentData[2]).addCourse(studentData[1]);
             }
             else{
@@ -67,24 +69,24 @@ public class University {
         }
     }
 
-    private void privateMakeSubjectHashMap(ArrayList<String[]> dataList){
+    public void privateMakeSubjectHashMap(ArrayList<String[]> dataList){
 
         for (String[] studentData : dataList){
             if (!subjectMap.containsKey(studentData[1])){
                 subjectMap.put(studentData[1], new Subject(studentData[1]));
-                subjectMap.get(studentData[1]).addStudent(studentData[2]);
+                subjectMap.get(studentData[1]).addStudent(studentData[0]);
             }
             else{
-                subjectMap.get(studentData[1]).addStudent(studentData[2]);
+                subjectMap.get(studentData[1]).addStudent(studentData[0]);
             }
         }
     }
 
-    private void privateMakeTeacherHashMap(ArrayList<String[]> dataList){
+    public void privateMakeTeacherHashMap(ArrayList<String[]> dataList){
 
         for (String[] studentData : dataList){
             if (!teacherMap.containsKey(studentData[4])){
-                teacherMap.put(studentData[4], new Teacher(studentData[4], null));
+                teacherMap.put(studentData[4], new Teacher(studentData[4]));
                 teacherMap.get(studentData[4]).addStudent(studentData[2]);
                 teacherMap.get(studentData[4]).addClassroom(studentData[0]);
                 teacherMap.get(studentData[4]).addSubject(studentData[1]);

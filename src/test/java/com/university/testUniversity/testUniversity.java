@@ -19,8 +19,8 @@ public class testUniversity {
     @Test
     public void testMakeAllMaps(){
         University myUniversity = new University("Austral");
-        Student myStudent = new Student("Armando Paredes", "armando@paredes");
-        Teacher myTeacher = new Teacher("Prof.alberto", "ajsdna@jsnd");
+        Student myStudent = new Student("Armando Paredes");
+        Teacher myTeacher = new Teacher("Prof.alberto");
         Subject mySubject = new Subject("Math");
 
         InformationExtractor myInformationExtractor = new InformationExtractor();
@@ -46,12 +46,12 @@ public class testUniversity {
 
     @Test
     public void testStudentLists(){
-        Student myStudent = new Student("Armando Paredes", "armando@paredes");
+        Student myStudent = new Student("Armando Paredes");
         assertEquals("Armando Paredes", myStudent.getName());
-        assertEquals("armando@paredes", myStudent.getMail());
+
 
         University myUniversity = new University("Austral");
-        Teacher myTeacher = new Teacher("Prof.alberto", null);
+        Teacher myTeacher = new Teacher("Prof.alberto");
         ArrayList<String> myClassroomList = new ArrayList<String>();
         myClassroomList.add("123");
         Subject mySubject = new Subject("Math");

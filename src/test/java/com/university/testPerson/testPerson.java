@@ -9,9 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class testPerson {
     @Test
     public void testPerson(){
-        Person person1 = new Person("Armando Paredes", "armando@paredes");
+        Person person1 = new Person("Armando Paredes");
         assertEquals("Armando Paredes", person1.getName());
-        assertEquals("armando@paredes", person1.getMail());
 
         University myUniversity = new University("Austral");
     }

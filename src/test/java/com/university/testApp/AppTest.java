@@ -1,4 +1,4 @@
-package com.university;
+package com.university.testApp;
 
 
 import java.io.BufferedReader;
@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.university.App;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -24,7 +25,7 @@ public class AppTest {
         }
 
         try {
-            App.main(new String[]{});  // Running the App's main method
+                App.main(new String[]{});  // Running the App's main method
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to execute App.main()");
@@ -47,6 +48,45 @@ public class AppTest {
                 assertEquals(expectedLine, solutionLine, "Mismatch found in the CSV file content.");
             }
             
+            // Ensure both files have the same number of lines
+            assertEquals(solutionReader.readLine(), expectedReader.readLine(), "Files have different number of lines.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void testSolutionCSVMatchesExpected2() {
+        String solutionFilePath = "src/main/resources/solution2.csv";
+        String expectedFilePath = "src/main/resources/expected_2.csv";
+
+        // Check if solution.csv exists before running the test
+
+
+        try {
+            App.main2(new String[]{});  // Running the App's main method
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to execute App.main()");
+        }
+
+        // Check if solution.csv was created after running the test
+        if (!Files.exists(Paths.get(solutionFilePath))) {
+            fail("The solution.csv file does not exist after running the test.");
+        }
+
+        // Proceed to compare the solution.csv with expected.csv
+        try (BufferedReader solutionReader = new BufferedReader(new FileReader(solutionFilePath));
+             BufferedReader expectedReader = new BufferedReader(new FileReader(expectedFilePath))) {
+
+            String solutionLine;
+            String expectedLine;
+
+            while ((solutionLine = solutionReader.readLine()) != null &&
+                    (expectedLine = expectedReader.readLine()) != null) {
+                assertEquals(expectedLine, solutionLine, "Mismatch found in the CSV file content.");
+            }
+
             // Ensure both files have the same number of lines
             assertEquals(solutionReader.readLine(), expectedReader.readLine(), "Files have different number of lines.");
 

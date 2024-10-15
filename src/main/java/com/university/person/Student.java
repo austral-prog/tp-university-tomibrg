@@ -9,8 +9,8 @@ public class Student extends Person {
     private HashSet<String> courseList = new HashSet<String>();
     private static ArrayList<Student> studentsList= new ArrayList<Student>();
 
-    public Student(String name, String mail) {
-        super(name, mail);
+    public Student(String name) {
+        super(name);
         studentsList.add(this);
     }
 
