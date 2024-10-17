@@ -24,12 +24,13 @@ public class App {
         InformationWriter myInformationWriter = new InformationWriter();
         myInformationWriter.writeData(myUniversity);
     }
+
     public static void main2(String[] args){
         University2 myUniversity2 = new University2("Austral2");
         InformationExtractor myInformationExtractor2 = new InformationExtractor();
-        ArrayList<String[]> dataList = myInformationExtractor2.extractFileData("src/main/resources/input_2.csv");
-        myUniversity2.makeAllHashMapsAndList(dataList);
-        InformationWriter myInformationWriter = new InformationWriter();
-        myInformationWriter.writeData2(myUniversity2);
+        ArrayList<String[]> dataList2 = myInformationExtractor2.extractFileData("src/main/resources/input_2.csv");
+        myUniversity2.makeAllHashMapsAndList(dataList2);
+        InformationWriter myInformationWriter2 = new InformationWriter();
+        myInformationWriter2.writeData2(myUniversity2);
     }
 }

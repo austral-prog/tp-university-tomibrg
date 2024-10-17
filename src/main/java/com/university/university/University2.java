@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public class University2 extends University{
     HashMap<String, Student> studentMap = new HashMap<String, Student>();
     HashMap<String, Subject> subjectMap = new HashMap<String, Subject>();
-    HashMap<String, HashMap<String, Evaluation>> evaluationMap = new HashMap<>();
+    HashMap<String, HashMap<String, HashMap<String, Evaluation>>> evaluationMap = new HashMap<>();
 
     public University2(String name) {
         super(name);
@@ -22,7 +22,7 @@ public class University2 extends University{
         return studentMap;
     }
 
-    public HashMap<String, HashMap<String, Evaluation>> getEvaluationMap(){
+    public HashMap<String, HashMap<String, HashMap<String, Evaluation>>> getEvaluationMap(){
         return evaluationMap;
     }
 
@@ -58,17 +58,25 @@ public class University2 extends University{
             String grade = studentData[5];
 
             if (!evaluationMap.containsKey(subject)){
-                evaluationMap.put(subject, new HashMap<String, Evaluation>());
-                evaluationMap.get(subject).put(studentName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
-                evaluationMap.get(subject).get(studentName).addExerciseMark(evaluationName, Double.parseDouble(grade));
+                evaluationMap.put(subject, new HashMap<String,  HashMap<String, Evaluation>>());
+                evaluationMap.get(subject).put(studentName, new HashMap<String, Evaluation>());
+                evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
+                evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
             }
             else{
                 if (!evaluationMap.get(subject).containsKey(studentName)){
-                    evaluationMap.get(subject).put(studentName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
-                    evaluationMap.get(subject).get(studentName).addExerciseMark(evaluationName,Double.parseDouble(grade));
+                    evaluationMap.get(subject).put(studentName, new HashMap<String, Evaluation>());
+                    evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
+                    evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName,Integer.parseInt(grade));
                 }
                 else{
-                    evaluationMap.get(subject).get(studentName).addExerciseMark(evaluationName, Double.parseDouble(grade));
+                    if(!evaluationMap.get(subject).get(studentName).containsKey(evaluationName)) {
+                        evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
+                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
+                    }
+                    else{
+                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
+                    }
                 }
             }
         }

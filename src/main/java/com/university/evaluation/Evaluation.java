@@ -9,7 +9,7 @@ public class Evaluation {
      String subject;
      String type;
      String  name;
-     HashMap<String, ArrayList<Double>> exerciseMap = new HashMap<String, ArrayList<Double>>();
+     HashMap<String, ArrayList<Integer>> exerciseMap = new HashMap<String, ArrayList<Integer>>();
      String grade;
      Student student;
 
@@ -32,16 +32,16 @@ public class Evaluation {
         return type;
     }
 
-    public HashMap<String, ArrayList<Double>> getExerciseMap(){
+    public HashMap<String, ArrayList<Integer>> getExerciseMap(){
         return exerciseMap;
     }
 
-    public void addExerciseMark(String exam, Double mark){
+    public void addExerciseMark(String exam, Integer mark){
         if (exerciseMap.containsKey((exam))){
             exerciseMap.get(exam).add(mark);
         }
         else{
-            ArrayList<Double> toPutArray = new ArrayList<>();
+            ArrayList<Integer> toPutArray = new ArrayList<>();
             toPutArray.add(mark);
             exerciseMap.put(exam, toPutArray);
         }

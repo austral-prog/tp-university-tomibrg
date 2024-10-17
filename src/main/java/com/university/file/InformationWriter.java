@@ -41,13 +41,22 @@ public class InformationWriter {
 
     public void writeData2(University2 myUniversity) {
         try {
-            University2 university2 = new University2("Austral");
+
             File solution = new File("src\\main\\resources\\solution2.csv");
             FileWriter solutionWriter = new FileWriter("src\\main\\resources\\solution2.csv"); //Si falla fijate aca.
             solutionWriter.write("Subject_Name,Evaluation_Name,Student_Name,Grade\n");
-            HashMap<String, HashMap<String, Evaluation>> evaluationMap = university2.getEvaluationMap();
+            TreeMap<String, HashMap<String, HashMap<String, Evaluation>>> evaluationMap = new TreeMap<>(myUniversity.getEvaluationMap());
             for (String subject : evaluationMap.keySet()) {
+                HashMap<String, HashMap<String, Evaluation>> studentKeyEvalautionMap = evaluationMap.get(subject);
 
+                for(String student : studentKeyEvalautionMap.keySet()){
+                    HashMap<String, Evaluation> evaluationNameMap = studentKeyEvalautionMap.get(student);
+
+                    for(String evaluationName: evaluationNameMap.keySet()) {
+                        Double average = averageGrade(evaluationNameMap.get(evaluationName));// guarda aca. Tenes que revisar si pasas por todas las evaluaciones de un alumno
+                        solutionWriter.write(subject + "," + evaluationName + "," + student + "," + average.toString() + "\n");
+                    }
+                }
             }
             solutionWriter.close();
         } catch (IOException i) {
@@ -55,15 +64,16 @@ public class InformationWriter {
         }
     }
 
-    private Integer averageGrade(Evaluation evaluation) {
-        Collection<String> toMakeAverage = null;
+    private Double averageGrade(Evaluation evaluation) {
         Integer average = 0;
-        for (String number : toMakeAverage) {
-            int num = Integer.parseInt(number);
-            average += num;
+        for(ArrayList<Integer> numList : evaluation.getExerciseMap().values()){
+
+            for (Integer num : numList){
+                average+= num;
+            }
         }
-        average /= toMakeAverage.size();
-        return average;
+        average/= evaluation.getExerciseMap().size();
+        return (double) average;
     }
 }
 
