@@ -47,7 +47,7 @@ public class InformationWriter {
             solutionWriter.write("Subject_Name,Evaluation_Name,Student_Name,Grade\n");
             TreeMap<String, HashMap<String, HashMap<String, Evaluation>>> evaluationMap = new TreeMap<>(myUniversity.getEvaluationMap());
             for (String subject : evaluationMap.keySet()) {
-                HashMap<String, HashMap<String, Evaluation>> studentKeyEvalautionMap = evaluationMap.get(subject);
+                TreeMap<String, HashMap<String, Evaluation>> studentKeyEvalautionMap = new TreeMap<>(evaluationMap.get(subject));
 
                 for(String student : studentKeyEvalautionMap.keySet()){
                     HashMap<String, Evaluation> evaluationNameMap = studentKeyEvalautionMap.get(student);
@@ -72,8 +72,8 @@ public class InformationWriter {
                 average+= num;
             }
         }
-        average/= evaluation.getExerciseMap().size();
-        return (double) average;
+        Double averageToReturn= (double) average/evaluation.getExerciseMap().size();
+        return  averageToReturn;
     }
 }
 

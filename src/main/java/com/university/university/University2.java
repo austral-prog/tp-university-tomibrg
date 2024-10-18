@@ -61,21 +61,21 @@ public class University2 extends University{
                 evaluationMap.put(subject, new HashMap<String,  HashMap<String, Evaluation>>());
                 evaluationMap.get(subject).put(studentName, new HashMap<String, Evaluation>());
                 evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
-                evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
+                evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(exercise, Integer.parseInt(grade));
             }
             else{
                 if (!evaluationMap.get(subject).containsKey(studentName)){
                     evaluationMap.get(subject).put(studentName, new HashMap<String, Evaluation>());
                     evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
-                    evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName,Integer.parseInt(grade));
+                    evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(exercise,Integer.parseInt(grade));
                 }
                 else{
                     if(!evaluationMap.get(subject).get(studentName).containsKey(evaluationName)) {
                         evaluationMap.get(subject).get(studentName).put(evaluationName, new Evaluation(evaluationName, subject, type, new Student(studentName)));
-                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
+                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(exercise, Integer.parseInt(grade));
                     }
                     else{
-                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(evaluationName, Integer.parseInt(grade));
+                        evaluationMap.get(subject).get(studentName).get(evaluationName).addExerciseMark(exercise, Integer.parseInt(grade));
                     }
                 }
             }
