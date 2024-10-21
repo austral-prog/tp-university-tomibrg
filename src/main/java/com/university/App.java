@@ -23,14 +23,16 @@ public class App {
         myUniversity.makeAllHashMapsAndList(dataList);
         InformationWriter myInformationWriter = new InformationWriter();
         myInformationWriter.writeData(myUniversity);
+
+
     }
 
     public static void main2(String[] args){
-        University2 myUniversity2 = new University2("Austral2");
-        InformationExtractor myInformationExtractor2 = new InformationExtractor();
-        ArrayList<String[]> dataList2 = myInformationExtractor2.extractFileData("src/main/resources/input_2.csv");
-        myUniversity2.makeAllHashMapsAndList(dataList2);
-        InformationWriter myInformationWriter2 = new InformationWriter();
-        myInformationWriter2.writeData2(myUniversity2);
+        InformationExtractor myInformationExtractor = new InformationExtractor();
+        University2 myUniversity = new University2("Austral");
+        ArrayList<String[]> dataList = myInformationExtractor.extractFileData("src/main/resources/input_2.csv");
+        myUniversity.makeAllHashMapsAndList(dataList);
+        InformationWriter myInformationWriter = new InformationWriter();
+        myInformationWriter.writeData2(myUniversity);
     }
 }

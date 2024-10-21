@@ -1,6 +1,8 @@
 package com.university.person;
 
 
+import com.university.evaluation.Evaluation;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -8,6 +10,7 @@ import java.util.HashSet;
 public class Student extends Person {
     private HashSet<String> courseList = new HashSet<String>();
     private static ArrayList<Student> studentsList= new ArrayList<Student>();
+    private ArrayList<Evaluation> evaluationArrayList = new ArrayList<>();
 
     public Student(String name) {
         super(name);
@@ -48,6 +51,16 @@ public class Student extends Person {
             }
         }
         return sortedStudents;
+    }
+
+    public ArrayList<Evaluation> getEvaluationArrayList() {
+        return evaluationArrayList;
+    }
+
+    public void addEvaluation(Evaluation evaluation){
+        if(!evaluationArrayList.contains(evaluation)){
+            evaluationArrayList.add(evaluation);
+        }
     }
 
     @Override

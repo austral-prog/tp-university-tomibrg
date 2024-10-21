@@ -2,17 +2,27 @@ package com.university.testApp;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import com.university.App;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AppTest {
+
+    @BeforeAll
+    public static void deleteFiles(){
+        File file = new File("src/main/resources/solution.csv");
+        file.delete();
+        File file2 = new File("src/main/resources/solution2.csv");
+        file2.delete();
+    }
 
     @Test
     public void testSolutionCSVMatchesExpected() {

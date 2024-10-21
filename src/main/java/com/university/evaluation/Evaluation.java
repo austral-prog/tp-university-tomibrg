@@ -4,16 +4,17 @@ import com.university.person.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Evaluation {
-     String subject;
-     String type;
-     String  name;
-     HashMap<String, ArrayList<Integer>> exerciseMap = new HashMap<String, ArrayList<Integer>>();
-     String grade;
-     Student student;
+     private String subject;
+    private String type;
+    private String  name;
+    private HashMap<String, ArrayList<Integer>> exerciseMap = new HashMap<String, ArrayList<Integer>>();
+    private String grade;
+    private String student;
 
-    public Evaluation(String name, String subject,String type, Student student){
+    public Evaluation(String name, String subject,String type, String student){
         this.name = name;
         this.subject = subject;
         this.type = type;
@@ -51,18 +52,23 @@ public class Evaluation {
         return grade;
     }
 
-    public Student getStudent(){
+    public String getStudent(){
         return student;
     }
 
     @Override
-    public boolean equals(Object other) {
+    public boolean equals(Object o) {
         boolean returnStatement = false;
-        Evaluation evaluation = (Evaluation) other;
 
-        if (this.getName().equals(((Evaluation) other).getName())) {
+        Evaluation other = (Evaluation) o;
+        if (this.getName().equals( other.getName()) & this.student.equals(other.getStudent()) & this.subject.equals(other.getSubject()) & this.type.equals(other.getType())) {
             returnStatement = true;
         }
         return returnStatement;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(name, student,subject, type);
     }
 }
