@@ -37,15 +37,14 @@ public class testUniversity {
         myStudentMap.put("Armando Paredes", myStudent);
         myTeacherMap.put("Prof.alberto", myTeacher);
         mySubjectMap.put("Math", mySubject);
-        assertEquals(myStudentMap, myUniversity.getStudentMap());
-        assertEquals(myTeacherMap, myUniversity.getTeacherMap());
+        assertEquals(myStudentMap, myUniversity.getStudentList());
         assertEquals(mySubjectMap, myUniversity.getSubjectMap());
-        assertEquals(myClassroomList, myUniversity.getClassroomList());
+
 
     }
 
     @Test
-    public void testStudentLists(){
+    public void testStudentLists() {
         Student myStudent = new Student("Armando Paredes");
         assertEquals("Armando Paredes", myStudent.getName());
 
@@ -66,9 +65,5 @@ public class testUniversity {
         ArrayList<String[]> dataList = myInformationExtractor.extractFileData("src/main/resources/test.csv");
         myUniversity.makeAllHashMapsAndList(dataList);
 
-        assertEquals(myStudent.getCourseList(), myUniversity.getStudentMap().get("Armando Paredes").getCourseList());
-        assertEquals(myTeacher.getSubjectList(), myUniversity.getTeacherMap().get("Prof.alberto").getSubjectList());
-        assertEquals(myTeacher.getStudentList(), myUniversity.getTeacherMap().get("Prof.alberto").getStudentList());
-        assertEquals(myTeacher.getClassroomList(), myUniversity.getTeacherMap().get("Prof.alberto").getClassroomList());
     }
 }

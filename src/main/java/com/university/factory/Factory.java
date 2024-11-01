@@ -1,13 +1,8 @@
 package com.university.factory;
 
-import com.university.evaluation.Evaluation;
-import com.university.person.Student;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public abstract class Factory {
-    public abstract ArrayList<? extends Evaluation> createSelf(ArrayList<? extends String[]> DataList);
+public interface Factory <T extends Factorable> {
 
-
+    public  ArrayList<T> createSelfList(ArrayList<String[]> dataList);
 }

@@ -1,101 +1,54 @@
 package com.university.university;
 
+
+import com.university.evaluation.Evaluation;
 import com.university.person.Student;
-import com.university.person.Teacher;
+import com.university.person.StudentFactory;
 import com.university.subject.Subject;
+import com.university.subject.SubjectFactory;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class University {
 
-    private ArrayList<String> classRoomList = new ArrayList<String>();
-    private HashMap<String, Subject> subjectMap = new HashMap<String,Subject>();
-    private HashMap<String, Student> studentMap = new HashMap<String, Student>();
-    private HashMap<String, Teacher> teacherMap = new HashMap<String, Teacher>();
+    private ArrayList<Subject> subjectList = new ArrayList<>();
+    private ArrayList<Student> studentList = new ArrayList<>();
+    private ArrayList<Evaluation> evaluationList;
     private String name;
 
     public University(String name){
         this.name = name;
     }
 
-
-
     public String getName(){
         return name;
     }
 
-    public ArrayList<String> getClassroomList() {
-        return classRoomList;
+    public ArrayList<Student> getStudentList() {
+        return studentList;
     }
 
-    public HashMap<String, Student> getStudentMap() {
-        return studentMap;
+    public ArrayList<Subject> getSubjectMap() {
+        return subjectList;
     }
 
-    public HashMap<String, Subject> getSubjectMap() {
-        return subjectMap;
-    }
-
-    public HashMap<String, Teacher> getTeacherMap() {
-        return teacherMap;
-    }
 
     public void makeAllHashMapsAndList(ArrayList<String[]> dataList){
-        privateMakeClassroomList(dataList);
-        privateMakeStudentHashMap(dataList);
-        privateMakeSubjectHashMap(dataList);
-        privateMakeTeacherHashMap(dataList);
+        privateMakeSubjectList(dataList);
+        privateMakeStudentList(dataList);
     }
 
-    public void privateMakeClassroomList(ArrayList<String[]> dataList){
-        for (String[] studentData : dataList){
-            if (!classRoomList.contains(studentData[0])){
-                classRoomList.add(studentData[0]);
-            }
-        }
+    private void privateMakeSubjectList(ArrayList<String[]> dataList){
+        SubjectFactory mySubjectFactory = new SubjectFactory();
+        subjectList = mySubjectFactory.createSelfList(dataList);
     }
 
-    public void privateMakeStudentHashMap(ArrayList<String[]> dataList){
-
-        for (String[] studentData : dataList){
-            if (!studentMap.containsKey(studentData[2])){
-                studentMap.put(studentData[2], new Student(studentData[2]));
-                studentMap.get(studentData[2]).addCourse(studentData[1]);
-            }
-            else{
-                studentMap.get(studentData[2]).addCourse(studentData[1]);
-            }
-        }
+    private void privateMakeStudentList(ArrayList<String[]> dataList){
+        StudentFactory myStudentFactory = new StudentFactory();
+        studentList = myStudentFactory.createSelfList(dataList);
     }
 
-    public void privateMakeSubjectHashMap(ArrayList<String[]> dataList){
-
-        for (String[] studentData : dataList){
-            if (!subjectMap.containsKey(studentData[1])){
-                subjectMap.put(studentData[1], new Subject(studentData[1]));
-                subjectMap.get(studentData[1]).addStudent(studentData[0]);
-            }
-            else{
-                subjectMap.get(studentData[1]).addStudent(studentData[0]);
-            }
-        }
-    }
-
-    public void privateMakeTeacherHashMap(ArrayList<String[]> dataList){
-
-        for (String[] studentData : dataList){
-            if (!teacherMap.containsKey(studentData[4])){
-                teacherMap.put(studentData[4], new Teacher(studentData[4]));
-                teacherMap.get(studentData[4]).addStudent(studentData[2]);
-                teacherMap.get(studentData[4]).addClassroom(studentData[0]);
-                teacherMap.get(studentData[4]).addSubject(studentData[1]);
-            }
-            else{
-                teacherMap.get(studentData[4]).addStudent(studentData[2]);
-                teacherMap.get(studentData[4]).addClassroom(studentData[0]);
-                teacherMap.get(studentData[4]).addSubject(studentData[1]);
-            }
-        }
+    public ArrayList<Evaluation> getEvaluationList(){
+        return evaluationList;
     }
 }

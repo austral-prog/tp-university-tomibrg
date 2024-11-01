@@ -1,58 +1,62 @@
 package com.university.evaluation;
 
-import com.university.person.Student;
+import com.university.factory.Factory;
 
-import java.text.DecimalFormat;
 import java.util.*;
 
-public class EvaluationFactory  {
+public class EvaluationFactory implements Factory <Evaluation> {
+    HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap = new HashMap<>();
 
+    @Override
+    public ArrayList<Evaluation> createSelfList(ArrayList<String[]> DataList) {
 
-
-    public ArrayList<Evaluation> createEvaluationList(ArrayList<String[]> DataList) {
-        HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap = new HashMap<>();
-        for(String[] lineList : DataList){
+        for (String[] lineList : DataList) {
             String studentName = lineList[0];
             String subject = lineList[1];
             String evaluationType = lineList[2];
             String evaluationName = lineList[3];
             String exercise = lineList[4];
             String grade = lineList[5];
+            ArrayList<String> exerciseList = new ArrayList<>();
+            exerciseList.add(exercise);
+            exerciseList.add(grade);
 
-            Evaluation evaluationComparator = new Evaluation(evaluationName, subject, evaluationType, studentName);
-            ArrayList<String> subExerciseList = new ArrayList<>();
-            subExerciseList.add(exercise);
-            subExerciseList.add(grade);
-
-            if (!evaluationMap.containsKey(evaluationComparator)){
-
-                evaluationMap.put(evaluationComparator, new ArrayList<ArrayList<String>>());
-                evaluationMap.get(evaluationComparator).add(subExerciseList);
-            }
-            else{
-
-                evaluationMap.get(evaluationComparator).add(subExerciseList);
+            if (evaluationType.toLowerCase().contains("final")) {
+                FinalEvaluation finalEvaluationToCompare = new FinalEvaluation(evaluationName, subject, evaluationType, studentName);
+                putInMap(finalEvaluationToCompare, exerciseList);
+            } else if (evaluationType.equalsIgnoreCase("PRACTICAL_WORK")) {
+                PracticalWork practicalEvaluationToCompare = new PracticalWork(evaluationName, subject, evaluationType, studentName);
+                putInMap(practicalEvaluationToCompare, exerciseList);
+            } else if (evaluationType.equalsIgnoreCase("ORAL_EXAM")) {
+                OralExam oralEvaluationToCompare = new OralExam(evaluationName, subject, evaluationType, studentName);
+                putInMap(oralEvaluationToCompare, exerciseList);
+            } else if (evaluationType.equalsIgnoreCase("WRITTEN_EXAM")) {
+                WrittenExam writtenEvaluationToCompare = new WrittenExam(evaluationName, subject, evaluationType, studentName);
+                putInMap(writtenEvaluationToCompare, exerciseList);
             }
         }
-
         return makeMapToList(evaluationMap);
     }
 
-    private ArrayList<Evaluation> makeMapToList(HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap){
-        ArrayList<Evaluation> finalEvaluationList = new ArrayList<>();
-        for (Evaluation evaluation : evaluationMap.keySet()){
-            ArrayList<ArrayList<String>> evaluationList = evaluationMap.get(evaluation);
-            for(ArrayList<String> exerciseList : evaluationList){
-                String exercise = exerciseList.getFirst();
-                String grade = exerciseList.getLast();
-                evaluation.addExerciseMark(exercise, Integer.parseInt(grade)); //Si algun error con el promedio, fijate aca.
-            }
-            finalEvaluationList.add(evaluation);
+    private void putInMap(Evaluation evaluation, ArrayList<String> exerciseList){
+        if (!evaluationMap.containsKey(evaluation)){
+            evaluationMap.put(evaluation, new ArrayList<ArrayList<String>>());
+            evaluationMap.get(evaluation).add(exerciseList);
         }
-        return finalEvaluationList;
+        else{
+            evaluationMap.get(evaluation).add(exerciseList);
+        }
     }
 
-
-
-
+    private ArrayList<Evaluation> makeMapToList(HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap){
+        ArrayList<Evaluation> evaluationList = new ArrayList<>(); //Si la grade esta rara, fijate aca. puede que el orden de las notas este mal.
+        for (Evaluation evaluation : evaluationMap.keySet()){
+            ArrayList<ArrayList<String>> exerciseLists = evaluationMap.get(evaluation);
+            for (ArrayList<String> exercise : exerciseLists){
+                evaluation.addExerciseMark(exercise.getFirst(), Integer.parseInt(exercise.getLast()));
+            }
+            evaluationList.add(evaluation);
+        }
+        return evaluationList;
+    }
 }

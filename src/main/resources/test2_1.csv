@@ -1,0 +1,5 @@
+Subject_Name,Criteria_Type,Criteria_Value,Evaluation_Name
+Geography,AVERAGE_ABOVE_VALUE,6.0,TP1,TP4,TP2,TP3
+Geography,MAX_ABOVE_VALUE,4.0,Examen Final
+Economics,MAX_ABOVE_VALUE,4.0,Examen Final
+Economics,MIN_ABOVE_VALUE,4.0,Primer Parcial,Segundo Parcial

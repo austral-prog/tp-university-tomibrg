@@ -1,10 +1,14 @@
 package com.university.file;
 
+
 import com.university.evaluation.Evaluation;
+import com.university.person.Student;
+import com.university.university.University;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class InformationProcessor {
 
@@ -15,7 +19,7 @@ public class InformationProcessor {
             subList.add(evaluation.getSubject());
             subList.add(evaluation.getName());
             subList.add(evaluation.getStudent());
-            Double averageGrade = getAverage(evaluation);
+            Integer averageGrade = evaluation.getGrade();
             subList.add(averageGrade.toString());
             studentEvaluationDataList.add(subList);
         }
@@ -23,18 +27,7 @@ public class InformationProcessor {
         return studentEvaluationDataList;
     }
 
-    private Double getAverage(Evaluation evaluation) {
-        Integer average = 0;
-        for (ArrayList<Integer> numList : evaluation.getExerciseMap().values()) {
 
-            for (Integer num : numList) {
-                average += num;
-            }
-        }
-        Double averageToReturn = (double) average / evaluation.getExerciseMap().size();
-        DecimalFormat numberFormat = new DecimalFormat("#.0");
-        return Double.parseDouble(numberFormat.format(averageToReturn));
-    }
 
     private ArrayList<ArrayList<String>> orderList(ArrayList<ArrayList<String>> studentEvaluationDataList){
         Collections.sort(studentEvaluationDataList, (list1, list2) -> {
@@ -48,6 +41,24 @@ public class InformationProcessor {
             return comparacion;
         });
         return studentEvaluationDataList;
+    }
+
+    public ArrayList<ArrayList<String>> makeListOfStudentToWrite(University university){
+        ArrayList<ArrayList<String>> studentStringList = new ArrayList<>();
+        for (Student student : university.getStudentList()){
+            ArrayList<String> listToAdd = new ArrayList<>();
+            listToAdd.add(student.getName());
+            int courseCount = student.getCourseList().size();
+            listToAdd.add(Integer.toString(courseCount));
+            studentStringList.add(listToAdd);
+        }
+         Collections.sort(studentStringList, new Comparator<ArrayList<String>>() {
+            @Override
+            public int compare(ArrayList<String> o1, ArrayList<String> o2) {        //si no esta bien el orden, mira aca.
+                return o1.getFirst().compareTo(o2.getFirst());
+            }
+        });
+        return studentStringList;
     }
 
 }

@@ -1,24 +1,25 @@
 package com.university.evaluation;
 
-import com.university.person.Student;
+import com.university.factory.Factorable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Evaluation {
-     private String subject;
+public abstract class Evaluation implements Factorable {
+    private String subject;
     private String type;
     private String  name;
-    private HashMap<String, ArrayList<Integer>> exerciseMap = new HashMap<String, ArrayList<Integer>>();
-    private String grade;
+    private HashMap<String, Integer> exerciseMap = new HashMap<String,Integer>();
+
     private String student;
 
-    public Evaluation(String name, String subject,String type, String student){
+    public Evaluation(String name, String subject, String type, String student){
         this.name = name;
         this.subject = subject;
         this.type = type;
         this.student = student;
+
     }
 
     public String getName(){
@@ -33,42 +34,38 @@ public class Evaluation {
         return type;
     }
 
-    public HashMap<String, ArrayList<Integer>> getExerciseMap(){
+    public HashMap<String, Integer> getExerciseMap(){
         return exerciseMap;
     }
 
-    public void addExerciseMark(String exam, Integer mark){
-        if (exerciseMap.containsKey((exam))){
-            exerciseMap.get(exam).add(mark);
+    public void addExerciseMark(String exercise, Integer mark){
+        if (!exerciseMap.containsKey((exercise))){
+            exerciseMap.put(exercise, mark);
         }
-        else{
-            ArrayList<Integer> toPutArray = new ArrayList<>();
-            toPutArray.add(mark);
-            exerciseMap.put(exam, toPutArray);
-        }
-    }
-
-    public String getGrade(){
-        return grade;
     }
 
     public String getStudent(){
-        return student;
+        return  student;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        boolean returnStatement = false;
+    public abstract Integer getGrade();
 
-        Evaluation other = (Evaluation) o;
-        if (this.getName().equals( other.getName()) & this.student.equals(other.getStudent()) & this.subject.equals(other.getSubject()) & this.type.equals(other.getType())) {
-            returnStatement = true;
+    @Override
+    public boolean equals(Object o){
+        boolean returnStatement = false;
+        if (o instanceof Evaluation) {
+
+            Evaluation other = (Evaluation) o;
+            if (name.equalsIgnoreCase(other.getName()) && subject.equalsIgnoreCase(other.getSubject()) && type.equalsIgnoreCase(other.getType()) && student.equalsIgnoreCase(other.getStudent())) {
+                returnStatement = true;
+            }
         }
         return returnStatement;
     }
 
     @Override
     public int hashCode(){
-        return Objects.hash(name, student,subject, type);
+        return Objects.hash(name, subject, type, student);
     }
+
 }

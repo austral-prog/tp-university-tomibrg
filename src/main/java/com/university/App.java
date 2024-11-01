@@ -1,18 +1,11 @@
 package com.university;
 
 import com.university.file.InformationExtractor;
+import com.university.file.InformationProcessor;
 import com.university.file.InformationWriter;
-import com.university.person.Student;
 import com.university.university.University;
-import com.university.university.University2;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 
 public class App {
@@ -22,14 +15,16 @@ public class App {
         ArrayList<String[]> dataList = myInformationExtractor.extractFileData("src/main/resources/input.csv");
         myUniversity.makeAllHashMapsAndList(dataList);
         InformationWriter myInformationWriter = new InformationWriter();
-        myInformationWriter.writeData(myUniversity);
+        InformationProcessor myInformationProcessor = new InformationProcessor();
+        ArrayList<ArrayList<String>> studentToWriteList = myInformationProcessor.makeListOfStudentToWrite(myUniversity);
+        myInformationWriter.writeData(studentToWriteList);
 
 
     }
 
     public static void main2(String[] args){
         InformationExtractor myInformationExtractor = new InformationExtractor();
-        University2 myUniversity = new University2("Austral");
+        University myUniversity = new University("Austral");
         ArrayList<String[]> dataList = myInformationExtractor.extractFileData("src/main/resources/input_2.csv");
         myUniversity.makeAllHashMapsAndList(dataList);
         InformationWriter myInformationWriter = new InformationWriter();
