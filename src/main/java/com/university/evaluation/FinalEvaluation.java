@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class FinalEvaluation extends Evaluation{
 
-    private HashMap<String, Integer> exerciseMap = new HashMap<String, Integer>();
+
 
 
     public FinalEvaluation(String name, String subject, String type, String student){
@@ -13,8 +13,8 @@ public class FinalEvaluation extends Evaluation{
     }
 
     @Override
-    public Integer getGrade() {
-        Integer grade = 0;
+    public Double getGrade() {
+        Double grade = 0.0;
         for (Integer exerciseMark : exerciseMap.values()){
             grade += exerciseMark;
         }

@@ -2,6 +2,7 @@ package com.university.university;
 
 
 import com.university.evaluation.Evaluation;
+import com.university.evaluation.EvaluationFactory;
 import com.university.person.Student;
 import com.university.person.StudentFactory;
 import com.university.subject.Subject;
@@ -28,27 +29,40 @@ public class University {
         return studentList;
     }
 
-    public ArrayList<Subject> getSubjectMap() {
+    public ArrayList<Subject> getSubjectList() {
         return subjectList;
     }
 
 
-    public void makeAllHashMapsAndList(ArrayList<String[]> dataList){
-        privateMakeSubjectList(dataList);
-        privateMakeStudentList(dataList);
-    }
-
-    private void privateMakeSubjectList(ArrayList<String[]> dataList){
+    public void makeSubjectList(ArrayList<String[]> dataList){
         SubjectFactory mySubjectFactory = new SubjectFactory();
         subjectList = mySubjectFactory.createSelfList(dataList);
     }
 
-    private void privateMakeStudentList(ArrayList<String[]> dataList){
+    public void makeStudentList(ArrayList<String[]> dataList){
         StudentFactory myStudentFactory = new StudentFactory();
         studentList = myStudentFactory.createSelfList(dataList);
+        for (Student student : studentList){
+            makeEvaluationMapForStudents(this, student);
+        }
+    }
+
+    public void makeEvaluationMapForStudents(University university, Student student){
+        for(String course : student.getCourseList()){
+            for (Subject subject : university.getSubjectList()){
+                if(subject.getName().equalsIgnoreCase(course)){
+                    student.getEvaluationMap().put(subject, new ArrayList<Evaluation>());
+                }
+            }
+        }
     }
 
     public ArrayList<Evaluation> getEvaluationList(){
         return evaluationList;
+    }
+
+    public void makeEvaluationList(ArrayList<String[]> dataList){
+        EvaluationFactory myEvaluationFactory = new EvaluationFactory();
+        evaluationList = myEvaluationFactory.createSelfList(dataList);
     }
 }

@@ -1,21 +1,23 @@
 package com.university.evaluation;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class PracticalWork extends Evaluation{
 
-    private HashMap<String, Integer> exerciseMap = new HashMap<String, Integer>();
+
 
     public PracticalWork(String name, String subject, String type, String student){
         super(name, subject, type, student);
     }
 
     @Override
-    public Integer getGrade() {
-        Integer grade = 0;
+    public Double getGrade() {
+        Double grade = 0.0;
         for (Integer exerciseMark : exerciseMap.values()){
-            grade = exerciseMark;
+            grade = Double.valueOf(exerciseMark);
         }
-        return grade;
+        DecimalFormat formatNumber = new DecimalFormat("#.00");
+        return Double.parseDouble(formatNumber.format(grade));
     }
 }

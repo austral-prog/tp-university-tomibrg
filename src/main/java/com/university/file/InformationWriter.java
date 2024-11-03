@@ -35,13 +35,9 @@ public class InformationWriter {
             solutionWriter.write("Subject_Name,Evaluation_Name,Student_Name,Grade");
             ArrayList<Evaluation> evaluationList = myUniversity.getEvaluationList();
             InformationProcessor myInformationProcessor = new InformationProcessor();
-            ArrayList<ArrayList<String>> listToWrite = myInformationProcessor.makeListToWrite(evaluationList);
-            for(ArrayList<String> lineToWrite : listToWrite) {
-                String subject = lineToWrite.getFirst();
-                String evaluationName = lineToWrite.get(1);
-                String studentName = lineToWrite.get(2);
-                String grade = lineToWrite.getLast();
-                solutionWriter.write("\n" + subject + "," + evaluationName + "," + studentName +"," + grade);
+            ArrayList<String> listToWrite = myInformationProcessor.makeListOfEvaluationToWrite(evaluationList);
+            for(String lineToWrite : listToWrite) {
+                solutionWriter.write("\n" + lineToWrite);
             }
 
             solutionWriter.close();
@@ -50,8 +46,23 @@ public class InformationWriter {
         }
     }
 
+    public void writeData3 (ArrayList<String> examinedStudentList){
+        try {
 
+            File solution = new File("src\\main\\resources\\solution3.csv");
+            FileWriter solutionWriter = new FileWriter("src\\main\\resources\\solution3.csv"); //Si falla fijate aca.
+            solutionWriter.write("Subject_Name,Student_Name,Condition");
+            for(String lineToWrite : examinedStudentList) {
+                solutionWriter.write("\n" + lineToWrite);
+            }
+
+            solutionWriter.close();
+        } catch (IOException i) {
+            i.printStackTrace();
+        }
     }
+
+}
 
 
 

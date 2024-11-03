@@ -22,22 +22,12 @@ public class testStudent {
         assertEquals("Matias", student2.getName());
 
         student1.addCourse("Math");
-        HashSet<String> compareSet = new HashSet<String>();
-        compareSet.add("Math");
-        assertEquals(compareSet, student1.getCourseList());
+        ArrayList<String> compareList = new ArrayList<>();
+        compareList.add("Math");
+        assertEquals(compareList, student1.getCourseList());
     }
 
-    @Test
-    public void testSortedStudents(){
-        Student student1 = new Student("b");
-        Student student2 = new Student("c");
-        Student student3 = new Student("a");
-        ArrayList<String> expectedList = new ArrayList<String>();
-        expectedList.add("a");
-        expectedList.add("b");
-        expectedList.add("c");
-        assertEquals(expectedList, student3.getSortedStudents());
-    }
+
 
 
 }

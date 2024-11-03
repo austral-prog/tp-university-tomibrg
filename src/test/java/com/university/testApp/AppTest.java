@@ -7,17 +7,21 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.university.App;
+import com.university.file.InformationExtractor;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class AppTest {
 
-    @BeforeAll
-    public static void deleteFiles(){
+    @BeforeEach
+    public  void deleteFiles(){
         File file = new File("src/main/resources/solution.csv");
         file.delete();
         File file2 = new File("src/main/resources/solution2.csv");
@@ -74,7 +78,7 @@ public class AppTest {
 
 
         try {
-            App.main2(new String[]{});  // Running the App's main method
+            App.main(new String[]{});  // Running the App's main method
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to execute App.main()");
@@ -103,6 +107,40 @@ public class AppTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testSolutionCSV3(){
+        InformationExtractor myInformationExtractor = new InformationExtractor();
+        ArrayList<String[]> dataList1 = myInformationExtractor.extractFileData("src/main/resources/input.csv");
+        String solutionFilePath = "src/main/resources/solution3.csv";
+        try {
+            App.main(new String[]{});  // Running the App's main method
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Failed to execute App.main()");
+        }
+
+        if (!Files.exists(Paths.get(solutionFilePath))) {
+            fail("The solution.csv file does not exist after running the test.");
+        }
+
+        ArrayList<String[]> dataList2 = myInformationExtractor.extractFileData(solutionFilePath);
+
+
+
+
+        HashSet<String> studentSemiCount2 = new HashSet<>();
+        for (String[] lineList : dataList2){
+            studentSemiCount2.add(lineList[1]);
+        }
+
+
+        HashSet<String> studentSemiCount3 = new HashSet<>();
+        for (String[] lineList : dataList1){
+            studentSemiCount3.add(lineList[2]);
+        }
+        assertEquals(studentSemiCount3.size(), studentSemiCount2.size());
     }
 
 

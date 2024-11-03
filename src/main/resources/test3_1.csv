@@ -1,0 +1,7 @@
+Subject_Name,Criteria_Type,Criteria_Value,Evaluation_Name
+Math,AVERAGE_ABOVE_VALUE,6.0,TP1,TP2,TP3
+Math,MAX_ABOVE_VALUE,4.0,Examen Final
+English,MAX_ABOVE_VALUE,4.0,Examen Final
+English,MIN_ABOVE_VALUE,4.0,Primer Parcial,Segundo Parcial
+Literature,MAX_ABOVE_VALUE,4.0,Examen Final
+Literature,MIN_ABOVE_VALUE,4.0,Primer Parcial,Segundo Parcial

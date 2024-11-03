@@ -5,11 +5,12 @@ import com.university.person.Student;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Subject implements Factorable {
     private String name;
     private ArrayList<String> studentsList = new ArrayList<String>();
-    private HashMap<String, ArrayList<String>> criteriaMap;
+    private HashMap<String, ArrayList<String>> criteriaMap = new HashMap<>();
     private ArrayList<String> classroomList = new ArrayList<>();
 
     public Subject(String name){
@@ -40,6 +41,16 @@ public class Subject implements Factorable {
         }
     }
 
+    public void addCriteria(ArrayList<String> evaluationNames, String criteria){
+        if(!criteriaMap.containsKey(criteria)){
+            criteriaMap.put(criteria, evaluationNames);
+        }
+    }
+
+    public HashMap<String, ArrayList<String>> getCriteria(){
+        return criteriaMap;
+    }
+
     @Override
     public boolean equals(Object other){
         boolean returnStatement = false;
@@ -51,5 +62,10 @@ public class Subject implements Factorable {
             returnStatement = true;
         }
         return returnStatement;
+    }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(name);
     }
 }

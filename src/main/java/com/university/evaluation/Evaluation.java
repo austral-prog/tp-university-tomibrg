@@ -4,13 +4,14 @@ import com.university.factory.Factorable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public abstract class Evaluation implements Factorable {
     private String subject;
     private String type;
     private String  name;
-    private HashMap<String, Integer> exerciseMap = new HashMap<String,Integer>();
+    public HashMap<String, Integer> exerciseMap = new LinkedHashMap<>();
 
     private String student;
 
@@ -48,7 +49,7 @@ public abstract class Evaluation implements Factorable {
         return  student;
     }
 
-    public abstract Integer getGrade();
+    public abstract Double getGrade();
 
     @Override
     public boolean equals(Object o){

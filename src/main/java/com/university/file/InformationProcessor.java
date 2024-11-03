@@ -5,41 +5,31 @@ import com.university.evaluation.Evaluation;
 import com.university.person.Student;
 import com.university.university.University;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
 
 public class InformationProcessor {
 
-    public ArrayList<ArrayList<String>> makeListToWrite(ArrayList<Evaluation> evaluationList) {
-        ArrayList<ArrayList<String>> studentEvaluationDataList = new ArrayList<>();
+    public ArrayList<String> makeListOfEvaluationToWrite(ArrayList<Evaluation> evaluationList) {
+        ArrayList<String> studentEvaluationDataList = new ArrayList<>();
         for (Evaluation evaluation : evaluationList) {
-            ArrayList<String> subList = new ArrayList<>();
-            subList.add(evaluation.getSubject());
-            subList.add(evaluation.getName());
-            subList.add(evaluation.getStudent());
-            Integer averageGrade = evaluation.getGrade();
-            subList.add(averageGrade.toString());
-            studentEvaluationDataList.add(subList);
+            String stringToAdd = "";
+            stringToAdd += evaluation.getSubject() + "," + evaluation.getName() + "," + evaluation.getStudent() + "," + evaluation.getGrade().toString() ;
+            studentEvaluationDataList.add(stringToAdd);
         }
-        orderList(studentEvaluationDataList);
-        return studentEvaluationDataList;
-    }
+        Collections.sort(studentEvaluationDataList, (s1, s2) -> {
+            // Compare lexicographically
+            int resultado = s1.compareTo(s2);
 
-
-
-    private ArrayList<ArrayList<String>> orderList(ArrayList<ArrayList<String>> studentEvaluationDataList){
-        Collections.sort(studentEvaluationDataList, (list1, list2) -> {
-            int comparacion = list1.get(0).compareTo(list2.get(0));
-            if (comparacion == 0){
-                comparacion = list1.get(1).compareTo(list2.get(1));
-                if (comparacion == 0){
-                    comparacion = list1.get(2).compareTo(list2.get(2));
-                }
+            // If equal up to the length of the shorter string, longer word goes first
+            if (resultado == 0) {
+                return Integer.compare(s2.length(), s1.length()); // Longer first
             }
-            return comparacion;
+
+            return resultado;
         });
+
+
+
         return studentEvaluationDataList;
     }
 
@@ -61,4 +51,13 @@ public class InformationProcessor {
         return studentStringList;
     }
 
+    public ArrayList<String> makeListOfExaminedStudentsToWrite(ArrayList<ArrayList<String>> examinedStudentList){
+        ArrayList<String> listToWrite = new ArrayList<>();
+        for (ArrayList<String> subList : examinedStudentList){
+            String stringToAdd = subList.getFirst()+ "," + subList.get(1) + "," + subList.getLast();
+            listToWrite.add(stringToAdd);
+        }
+         Collections.sort(listToWrite);
+    return listToWrite;
+    }
 }

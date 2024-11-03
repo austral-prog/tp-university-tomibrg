@@ -1,0 +1,12 @@
+Student,Subject,Evaluation_Type,Evaluation_Name,Exercise_Name,Grade
+Armando Paredes,Math,WRITTEN_EXAM,Segundo Parcial,Ej2,7
+John Doe,English,PRACTICAL_WORK,TP3,Ej3,5
+Armando Paredes,Math,WRITTEN_EXAM,Segundo Parcial,Ej1,4
+John Doe,English,PRACTICAL_WORK,TP3,Ej2,9
+Armando Paredes,Math,WRITTEN_EXAM,Primer Parcial,Ej2,5
+Armando Paredes,Math,WRITTEN_EXAM,Primer Parcial,Ej1,7
+Armando Paredes,Math,FINAL_EXAM,Examen Final,Ej1,2
+Armando Paredes,Math,FINAL_EXAM,Examen Final,Ej2,2
+John Doe,English,PRACTICAL_WORK,TP1,Ej1,2
+John Doe,English,PRACTICAL_WORK,TP2,Ej2,5
+John Doe,English,FINAL_EXAM,Examen Final,Ej2,2
