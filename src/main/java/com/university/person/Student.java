@@ -2,6 +2,7 @@ package com.university.person;
 
 
 
+import com.university.Entity;
 import com.university.evaluation.Evaluation;
 import com.university.factory.Factorable;
 import com.university.subject.Subject;
@@ -11,11 +12,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class Student extends Person implements Factorable {
+public class Student extends Person implements Factorable, Entity {
 
     private ArrayList<String> courseList = new ArrayList<>();
     private HashMap<Subject, ArrayList<Evaluation>> evaluationMap = new HashMap<>();
-
+    private int idNum;
 
     public Student(String name) {
         super(name);
@@ -67,4 +68,13 @@ public class Student extends Person implements Factorable {
         return returnStatement;
     }
 
+    @Override
+    public int getId() {
+        return idNum;
+    }
+
+    @Override
+    public void setId(int id) {
+        idNum = id;
+    }
 }

@@ -1,5 +1,6 @@
 package com.university.subject;
 
+import com.university.Entity;
 import com.university.factory.Factorable;
 import com.university.person.Student;
 
@@ -7,11 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Subject implements Factorable {
+public class Subject implements Factorable, Entity {
     private String name;
     private ArrayList<String> studentsList = new ArrayList<String>();
     private HashMap<String, ArrayList<String>> criteriaMap = new HashMap<>();
     private ArrayList<String> classroomList = new ArrayList<>();
+    private int id;
 
     public Subject(String name){
         this.name = name;
@@ -67,5 +69,15 @@ public class Subject implements Factorable {
     @Override
     public int hashCode(){
         return Objects.hash(name);
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 }

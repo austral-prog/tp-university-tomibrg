@@ -1,5 +1,6 @@
 package com.university.evaluation;
 
+import com.university.Entity;
 import com.university.factory.Factorable;
 
 import java.util.ArrayList;
@@ -7,12 +8,12 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Objects;
 
-public abstract class Evaluation implements Factorable {
+public abstract class Evaluation implements Factorable,Entity {
     private String subject;
     private String type;
     private String  name;
     public HashMap<String, Integer> exerciseMap = new LinkedHashMap<>();
-
+    private int id;
     private String student;
 
     public Evaluation(String name, String subject, String type, String student){
@@ -67,6 +68,16 @@ public abstract class Evaluation implements Factorable {
     @Override
     public int hashCode(){
         return Objects.hash(name, subject, type, student);
+    }
+
+    @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(int id) {
+        this.id = id;
     }
 
 }
