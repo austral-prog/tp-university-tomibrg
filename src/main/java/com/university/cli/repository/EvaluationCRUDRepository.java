@@ -8,7 +8,7 @@ import com.university.subject.Subject;
 import java.util.ArrayList;
 
 public class EvaluationCRUDRepository implements CRUDRepository<Evaluation> {
-    ArrayList<Evaluation> evaluationRepository = new ArrayList<>();
+    private ArrayList<Evaluation> evaluationRepository = new ArrayList<>();
 
     @Override
     public void create(Evaluation entity) {
@@ -87,5 +87,9 @@ public class EvaluationCRUDRepository implements CRUDRepository<Evaluation> {
     @Override
     public Class<Evaluation> getEntityClass() {
         return Evaluation.class;
+    }
+
+    public ArrayList<Evaluation> getEvaluationRepository() {
+        return evaluationRepository;
     }
 }

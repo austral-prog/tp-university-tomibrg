@@ -6,7 +6,7 @@ import com.university.person.Student;
 import java.util.ArrayList;
 
 public class StudentCRUDRepository implements CRUDRepository<Student> {
-   ArrayList<Student> studentRepository = new ArrayList<>();
+   private ArrayList<Student> studentRepository = new ArrayList<>();
 
     @Override
     public void create(Student entity) {
@@ -80,5 +80,9 @@ public class StudentCRUDRepository implements CRUDRepository<Student> {
     @Override
     public Class<Student> getEntityClass() {
         return Student.class;
+    }
+
+    public ArrayList<Student> getStudentRepository() {
+        return studentRepository;
     }
 }

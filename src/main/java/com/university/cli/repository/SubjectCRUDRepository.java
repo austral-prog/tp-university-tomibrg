@@ -7,7 +7,7 @@ import com.university.subject.Subject;
 import java.util.ArrayList;
 
 public class SubjectCRUDRepository implements CRUDRepository<Subject> {
-    ArrayList<Subject> subjectRepository = new ArrayList<>();
+    private ArrayList<Subject> subjectRepository = new ArrayList<>();
 
     @Override
     public void create(Subject entity) {
@@ -80,5 +80,9 @@ public class SubjectCRUDRepository implements CRUDRepository<Subject> {
     @Override
     public Class<Subject> getEntityClass() {
         return Subject.class;
+    }
+
+    public ArrayList<Subject> getSubjectRepository() {
+        return subjectRepository;
     }
 }

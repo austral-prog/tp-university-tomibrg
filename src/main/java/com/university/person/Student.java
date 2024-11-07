@@ -34,14 +34,6 @@ public class Student extends Person implements Factorable, Entity {
     }
 
 
-
-    public ArrayList<String> getSortedStudents(){
-        ArrayList<String> sortedStudents = new ArrayList<String>();
-        Collections.sort(sortedStudents);
-        return sortedStudents;
-    }
-
-
     public HashMap<Subject, ArrayList<Evaluation>> getEvaluationMap() {
         return evaluationMap;
     }

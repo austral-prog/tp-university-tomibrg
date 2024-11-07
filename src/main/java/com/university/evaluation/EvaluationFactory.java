@@ -5,7 +5,7 @@ import com.university.factory.Factory;
 import java.util.*;
 
 public class EvaluationFactory implements Factory <Evaluation> {
-    HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap = new HashMap<>();
+    private HashMap<Evaluation, ArrayList<ArrayList<String>>> evaluationMap = new HashMap<>();
 
     @Override
     public ArrayList<Evaluation> createSelfList(ArrayList<String[]> DataList) {
